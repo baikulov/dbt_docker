@@ -1,0 +1,17 @@
+version: '3'
+services:
+  code-server:
+    container_name: dbt_container
+    build:
+      context: .
+      args:
+        - GIT_REPO_URL=${GIT_REPO_URL}
+        - GIT_USER_NAME=${GIT_USER_NAME}
+        - GIT_USER_EMAIL=${GIT_USER_EMAIL}
+        - GIT_REPO_NAME=${GIT_REPO_NAME}
+        - PASSWORD=${PASSWORD}
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    restart: unless-stopped
